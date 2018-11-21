@@ -55,7 +55,7 @@ the value for `webdriver.chrome.driver`
 docker exec -it nutch bash
 
 # execute the crawl
-/root/nutch/bin/crawl -i -s urls_test crawler/stat 1
+/root/nutch/bin/crawl -i -s urls crawler/stat 1
 ```
 
 2) check the result

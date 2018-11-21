@@ -24,9 +24,8 @@ services:
       - JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
     volumes:
       - ./index-writers.xml:/root/nutch/conf/index-writers.xml
-      - ./nutch-site.xml:/root/nutch/conf/nutch-site.xml
       - ./regex-urlfilter.txt:/root/nutch/conf/regex-urlfilter.txt
-      - ./test_javascript_dynamic_content_sites.txt:/root/nutch/urls_test/test_javascript_dynamic_content_sites.txt
+      - ./no_javascript_sites.txt:/root/nutch/urls/seed.txt
     stdin_open: true
 
 
