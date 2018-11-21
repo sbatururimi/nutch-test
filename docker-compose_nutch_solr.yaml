@@ -1,0 +1,33 @@
+# To execute this docker-compose yml file use `docker-compose -f <file_name> up`
+# Add the `-d` flag at the end for detached execution
+version: "3"
+services:
+  # apache solr
+  solr:
+    image: "solr:7.3.1"
+    container_name: "solr"
+    ports:
+      - "8983:8983"
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - mycore
+  # apache nutch
+  nutch:
+    build: .
+    container_name: "nutch"
+    ports:
+      - "5555:5555"
+    depends_on:
+      - solr
+    environment:
+      - JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+    volumes:
+      - ./index-writers.xml:/root/nutch/conf/index-writers.xml
+      - ./nutch-site.xml:/root/nutch/conf/nutch-site.xml
+      - ./regex-urlfilter.txt:/root/nutch/conf/regex-urlfilter.txt
+      - ./test_javascript_dynamic_content_sites.txt:/root/nutch/urls_test/test_javascript_dynamic_content_sites.txt
+    stdin_open: true
+
+
+
