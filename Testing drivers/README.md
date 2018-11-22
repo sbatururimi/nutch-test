@@ -25,3 +25,7 @@ java ChromeDriverTest
 INFO: Detected dialect: OSS
 Google
 ```
+
+
+**NB**
+The headless mode (`--headless`)is required when a screen session is not available by default (for example no monitor attached to the server). You can consider an alternative way of doing with `Xvfb`

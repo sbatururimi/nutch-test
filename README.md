@@ -10,7 +10,7 @@ docker-compose -f docker-compose_selenium_nutch_solr.yaml up -d --scale chrome=1
 ## Option 2: nutch + solr
 
 ```
-docker-compose -f docker-compose_selenium_nutch_solr.yaml up -d
+docker-compose -f docker-compose_nutch_solr.yaml up -d
 ```
 
 ### Installing Chrome Driver
