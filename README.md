@@ -55,7 +55,7 @@ the value for `webdriver.chrome.driver`
 docker exec -it nutch bash
 
 # execute the crawl
-/root/nutch/bin/crawl -i -s urls crawler/stat 1
+/root/nutch/bin/crawl -i -D solr.server.url=http://solr:8983/solr/mycore -s urls crawler 1
 ```
 
 2) check the result
