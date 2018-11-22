@@ -18,7 +18,7 @@ services:
     container_name: "nutch"
     ports:
       - "5555:5555"
-    depends_on:
+    links:
       - solr
     environment:
       - JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
@@ -26,6 +26,7 @@ services:
       - ./index-writers.xml:/root/nutch/conf/index-writers.xml
       - ./regex-urlfilter.txt:/root/nutch/conf/regex-urlfilter.txt
       - ./no_javascript_sites.txt:/root/nutch/urls/seed.txt
+      - ./nutch-site.xml:/root/nutch/conf/nutch-site.xml
     stdin_open: true
 
 

@@ -2465,7 +2465,7 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property>
   <name>selenium.driver</name>
-  <value>remote</value>
+  <value>chrome</value>
   <description>
     A String value representing the flavour of Selenium 
     WebDriver() to use. Currently the following options

@@ -56,7 +56,8 @@ rm chromedriver_linux64.zip
 the value for `webdriver.chrome.driver`
 
 # Run a test
-1) crawl
+1) Update `selenium.driver` in `conf/nutch-site.xml` to the selenium driver you want to test
+2) crawl
 ```
 # connect to the nutch container
 docker exec -it nutch bash
@@ -65,7 +66,7 @@ docker exec -it nutch bash
 /root/nutch/bin/crawl -i -D solr.server.url=http://solr:8983/solr/mycore -s urls crawler 1
 ```
 
-2) check the result
+3) check the result
 Test your result in Solr by opening in your browser:
 localhost:8983/
 and going to the created node `mycore`, then executing the default fetch.
