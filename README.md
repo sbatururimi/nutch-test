@@ -38,6 +38,13 @@ apt update
 apt install google-chrome-stable
 ```
 
+**NB**
+You may need to upgrade and then update your packages:
+```
+apt upgrade
+apt update
+```
+
 2) download chrome driver from the [download page](http://chromedriver.chromium.org/downloads)
 ```
 cd ~
