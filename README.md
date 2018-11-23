@@ -15,7 +15,7 @@ docker-compose -f docker-compose_nutch_solr.yaml up -d
 
 ### Installing Chrome Driver
 
-This is an option when not using Selenium.
+This is an option when not using Selenium HUB.
 
 1) Install Chrome browser:
 * edit sources.list
@@ -53,7 +53,27 @@ unzip chromedriver_linux64.zip
 rm chromedriver_linux64.zip
 ```
 3) Change the location of the ChromeDriver binary path if necessary in nutch-default.xml or nutch-site.xml by specifying
-the value for `webdriver.chrome.driver`
+the value for `selenium.grid.binary`
+
+### Installing Firefox Driver
+
+This is an option when not using Selenium HUB.
+
+1) Install Firefox browser:
+
+```
+apt install firefox
+```
+
+2) download gecko driver from the [download page](https://www.softwaretestinghelp.com/selenium-webdriver-selenium-tutorial-8/)
+```
+cd ~
+wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
+tar -zxvf geckodriver-v0.23.0-linux64.tar.gz
+rm geckodriver-v0.23.0-linux64.tar.gz
+```
+3) Change the location of the gecko binary path if necessary in nutch-default.xml or nutch-site.xml by specifying
+the value for `selenium.grid.binary`
 
 # Run a test
 1) Update `selenium.driver` in `conf/nutch-site.xml` to the selenium driver you want to test

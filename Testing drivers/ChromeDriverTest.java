@@ -1,6 +1,6 @@
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions; 
-import java.net.URL;
+
 
 public class ChromeDriverTest {
     public static void main(String[] args)throws Exception{
