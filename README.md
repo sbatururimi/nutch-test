@@ -1,4 +1,4 @@
-# How to use
+# Installating Nutch
 ## Option 1: Nutch only
 docker build --force-rm  -t nutch .
 
@@ -13,7 +13,7 @@ docker-compose -f docker-compose_selenium_nutch_solr.yaml up -d --scale chrome=1
 docker-compose -f docker-compose_nutch_solr.yaml up -d
 ```
 
-### Installing Chrome Driver
+# Installing Chrome Driver
 
 This is an option when not using Selenium HUB.
 
@@ -55,7 +55,7 @@ rm chromedriver_linux64.zip
 3) Change the location of the ChromeDriver binary path if necessary in nutch-default.xml or nutch-site.xml by specifying
 the value for `selenium.grid.binary`
 
-### Installing Firefox Driver
+# Installing Firefox Driver
 
 This is an option when not using Selenium HUB.
 
@@ -87,6 +87,7 @@ docker exec -it nutch bash
 ```
 
 3) check the result
-Test your result in Solr by opening in your browser:
+- Test your result in Solr by opening in your browser:
 localhost:8983/
-and going to the created node `mycore`, then executing the default fetch.
+- navigate to the created node `mycore`,
+- execute the default query fetch: *:*
