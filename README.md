@@ -76,7 +76,7 @@ rm geckodriver-v0.23.0-linux64.tar.gz
 the value for `selenium.grid.binary`
 
 # Run a test
-1) Update `selenium.driver` in `conf/nutch-site.xml` to the selenium driver you want to test
+1) Set the value for `selenium.driver` in `conf/nutch-site.xml` to the selenium driver you want to test
 2) crawl
 ```
 # connect to the nutch container
