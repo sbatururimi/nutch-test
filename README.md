@@ -7,7 +7,7 @@ Selenium hub with 10 Chrome nodes and 10 Firefox nodes each in headless mode
 ```
 docker-compose -f docker-compose_selenium_nutch_solr.yaml up -d --scale chrome=10 --scale firefox=10 -f docker-compose_selenium_nutch_solr.yaml
 ```
-## Option 2: nutch + solr
+## Option 3: nutch + solr
 
 ```
 docker-compose -f docker-compose_nutch_solr.yaml up -d
