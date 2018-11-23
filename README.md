@@ -77,7 +77,8 @@ the value for `selenium.grid.binary`
 
 # Run a test
 1) Set the value for `selenium.driver` in `conf/nutch-site.xml` to the selenium driver you want to test
-2) crawl
+2) If you don't have a screen being attached to the server, set `selenium.enable.headless` to `true`
+3) crawl
 ```
 # connect to the nutch container
 docker exec -it nutch bash
@@ -86,8 +87,11 @@ docker exec -it nutch bash
 /root/nutch/bin/crawl -i -D solr.server.url=http://solr:8983/solr/mycore -s urls crawler 1
 ```
 
-3) check the result
+4) check the result
 - Test your result in Solr by opening in your browser:
 localhost:8983/
 - navigate to the created node `mycore`,
-- execute the default query fetch: *:*
+- execute the default query fetch:
+```
+*:*
+```

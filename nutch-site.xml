@@ -2465,7 +2465,7 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property>
   <name>selenium.driver</name>
-  <value>chrome</value>
+  <value>firefox</value>
   <description>
     A String value representing the flavour of Selenium 
     WebDriver() to use. Currently the following options
@@ -2512,7 +2512,7 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property>
   <name>selenium.grid.binary</name>
-  <value></value>
+  <value>/root/geckodriver</value>
   <description>A String value representing the path to the browser binary 
     location for each node
  </description>
@@ -2520,7 +2520,7 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property>
   <name>selenium.enable.headless</name>
-  <value>false</value>
+  <value>true</value>
   <description>A Boolean value representing the headless option of the Chrome and Firefox 
     web drivers.
   </description>
