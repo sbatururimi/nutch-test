@@ -5,7 +5,7 @@ docker build --force-rm  -t nutch .
 ## Option 2:  selenium hub + nutch + solr
 Selenium hub with 10 Chrome nodes and 10 Firefox nodes each in headless mode
 ```
-docker-compose -f docker-compose_selenium_nutch_solr.yaml up -d --scale chrome=10 --scale firefox=10 -f docker-compose_selenium_nutch_solr.yaml
+docker-compose -f docker-compose_selenium_nutch_solr.yaml up -d --scale chrome=10 --scale firefox=10
 ```
 ## Option 3: nutch + solr
 
@@ -75,6 +75,34 @@ rm geckodriver-v0.23.0-linux64.tar.gz
 3) Change the location of the gecko binary path if necessary in nutch-default.xml or nutch-site.xml by specifying
 the value for `selenium.grid.binary`
 
+# Installing Opera Driver
+
+This is an option when not using Selenium HUB. 
+
+1) Install Opera browser by downloading the last version from [link](hhttp://http://download4.operacdn.com/ftp/pub/opera/desktop)
+
+```
+wget http://download4.operacdn.com/ftp/pub/opera/desktop/56.0.3051.99/linux/opera-stable_56.0.3051.99_amd64.deb
+dpkg -i opera-stable_56.0.3051.99_amd64.deb
+apt install -f
+```
+**NB**
+Update to the appropriate Opera version.
+
+2) download opera driver from the [download page](https://github.com/operasoftware/operachromiumdriver/releases)
+```
+cd ~
+wget wget https://github.com/operasoftware/operachromiumdriver/releases/download/v.2.40/operadriver_linux64.zip
+unzip operadriver_linux64.zip
+rm operadriver_linux64.zip
+mv operadriver_linux64/operadriver /root
+chmod +x operadriver
+```
+
+3) Change the location of the gecko binary path if necessary in nutch-default.xml or nutch-site.xml by specifying
+the value for `selenium.grid.binary`
+
+
 # Run a test
 1) Set the value for `selenium.driver` in `conf/nutch-site.xml` to the selenium driver you want to test
 2) If you don't have a screen being attached to the server, set `selenium.enable.headless` to `true`
@@ -95,3 +123,6 @@ localhost:8983/
 ```
 *:*
 ```
+
+ ## License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/sbatururimi/nutch-test/LICENSE.md)
