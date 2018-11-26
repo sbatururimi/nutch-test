@@ -125,4 +125,4 @@ localhost:8983/
 ```
 
  ## License
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/sbatururimi/nutch-test/LICENSE.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/sbatururimi/nutch-test/blob/master/LICENSE.md)
