@@ -59,6 +59,7 @@ services:
       - ./nutch-site.xml:/root/nutch/conf/nutch-site.xml
       - ./regex-urlfilter.txt:/root/nutch/conf/regex-urlfilter.txt
       - ./test_javascript_dynamic_content_sites.txt:/root/nutch/urls/seed.txt
+      - ./agents.txt:/root/nutch/conf/agents.txt
     stdin_open: true
 
 
