@@ -15,7 +15,7 @@ docker-compose -f docker-compose_nutch_solr.yaml up -d
 
 ## Option 4: selenium hub + nutch + solr + tor instances
 ```
-docker-compose -f docker-compose_nutch_solr.yaml up -d --scale firefox=40
+docker-compose -f docker-compose_selenium_nutch_solr_tor.yaml up -d --scale firefox=40
 ```
 
 # Installing Chrome Driver
