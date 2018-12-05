@@ -1,0 +1,86 @@
+# To execute this docker-compose yml file use `docker-compose -f <file_name> up`
+# Add the `-d` flag at the end for detached execution
+version: "2"
+services:
+    # rotating ips
+  alpine-tor:
+    image: "zeta0/alpine-tor:latest"
+    volumes:
+      - /dev/shm:/dev/shm
+    container_name: "alpine-tor"
+    ports:
+      - "8118:8118"
+      - "2090:2090"
+    environment:
+      - tors=30
+      - privoxy=1
+    mem_limit: 5000000000
+
+  # selenium hub
+  selenium-hub:
+    image: selenium/hub:3.141.59-bismuth
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+    environment:
+      - GRID_BROWSER_TIMEOUT=90
+      - GRID_TIMEOUT=90
+      - GRID_MAX_SESSION=100
+    depends_on:
+      - alpine-tor
+    mem_limit: 2000000000
+
+  # selenium node
+  chrome:
+    image: selenium/node-chrome:3.141.59-bismuth
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - START_XVFB=false
+    mem_limit: 2000000000
+
+  # selenium node
+  firefox:
+    image: selenium/node-firefox:3.141.5-astatine
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - START_XVFB=false
+    mem_limit: 2000000000
+
+  # apache solr
+  solr:
+    image: "solr:7.3.1"
+    container_name: "solr"
+    ports:
+      - "8983:8983"
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - mycore
+    depends_on:
+      - selenium-hub
+    mem_limit: 2000000000
+
+  # apache nutch
+  nutch:
+    build: .
+    container_name: "nutch"
+    ports:
+      - "5555:5555"
+    depends_on:
+      - solr
+    environment:
+      - JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+    stdin_open: true
+    mem_limit: 2000000000
+
+

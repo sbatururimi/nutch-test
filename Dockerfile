@@ -26,7 +26,7 @@ RUN apt install -y ant openssh-server vim telnet git rsync curl openjdk-8-jdk-he
 RUN echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> $HOME/.bashrc
 
 # Checkout and build the nutch trunk
-RUN git clone -b NUTCH-2676 https://github.com/sbatururimi/nutch.git nutch_source
+RUN git clone -b NUTCH-2676-ignore-robot-txt https://github.com/sbatururimi/nutch.git nutch_source
 
 # build the nutch trunk with a workaround for the javax.ws packaging.type problem
 # check for more details 

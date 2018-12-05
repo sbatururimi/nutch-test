@@ -37,7 +37,7 @@ Ex: move `FirefoxDriverTest.java` into `/nutch/plugins/lib-selenium` where nutch
 2) Add required jars into classpath
 ```
 # set the Java CLASSPATH environment variable 
-export CLASSPATH=".:selenium-selenium-driver-3.141.5.jar:selenium-api-3.141.5.jar:selenium-support-3.141.5.jar:selenium-remote-driver-3.141.5.jar:okhttp-3.11.0.jar :okio-1.14.0.jar:guava-25.0-jre.jar:okhttp-3.11.0.jar:commons-exec-1.3.jar"
+export CLASSPATH=".:selenium-firefox-driver-3.141.5.jar:selenium-api-3.141.5.jar:selenium-support-3.141.5.jar:selenium-remote-driver-3.141.5.jar:okhttp-3.11.0.jar :okio-1.14.0.jar:guava-25.0-jre.jar:okhttp-3.11.0.jar:commons-exec-1.3.jar"
 ```
 **NB** The version of jar to be added may vary.
 

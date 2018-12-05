@@ -6,7 +6,7 @@ public class FirefoxDriverTest {
                 System.setProperty("webdriver.gecko.driver","/root/geckodriver");
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.addArguments("--headless");
-                FirefoxDriver firefox = new FirefoxDriver(firefoxOptions);
+                RemoteWebDriver firefox = new FirefoxDriver(firefoxOptions);
 
                 firefox.get("https://www.google.com");
                 System.out.println(firefox.getTitle());
