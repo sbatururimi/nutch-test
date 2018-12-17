@@ -1,6 +1,6 @@
 # To execute this docker-compose yml file use `docker-compose -f <file_name> up`
 # Add the `-d` flag at the end for detached execution
-version: "3"
+version: "2"
 services:
   # selenium hub
   selenium-hub:
@@ -11,26 +11,34 @@ services:
     environment:
       - GRID_BROWSER_TIMEOUT=90
       - GRID_TIMEOUT=90
-      - GRID_MAX_SESSION=5
+      - GRID_MAX_SESSION=100
+    mem_limit: 2000000000
+    restart: always
 
   # selenium node
-  chrome:
-    image: selenium/node-chrome:3.141.5-astatine
-    depends_on:
-      - selenium-hub
-    environment:
-      - HUB_HOST=selenium-hub
-      - HUB_PORT=4444
-      - START_XVFB=false   
+#  chrome:
+#    image: selenium/node-chrome:3.141.5-astatine
+#    depends_on:
+#      - selenium-hub
+#    environment:
+#      - HUB_HOST=selenium-hub
+#      - HUB_PORT=4444
+#      - START_XVFB=false   
 
   # selenium node
   firefox:
     image: selenium/node-firefox:3.141.5-astatine
     depends_on:
       - selenium-hub
+    volumes:
+      - /dev/shm:/dev/shm
     environment:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444
+      - START_XVFB=false
+    mem_limit: 2000000000
+    restart: always
+
 
   # apache solr
   solr:
@@ -44,22 +52,30 @@ services:
       - mycore
     depends_on:
       - selenium-hub
+    mem_limit: 2000000000
+    restart: always
+
   # apache nutch
   nutch:
     build: .
     container_name: "nutch"
     ports:
       - "5555:5555"
+      - "8081:8081"
+      - "8080:8080"
     depends_on:
       - solr
     environment:
       - JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
     volumes:
-      - ./index-writers.xml:/root/nutch/conf/index-writers.xml
-      - ./nutch-site.xml:/root/nutch/conf/nutch-site.xml
-      - ./regex-urlfilter.txt:/root/nutch/conf/regex-urlfilter.txt
-      - ./test_javascript_dynamic_content_sites.txt:/root/nutch/urls/seed.txt
-      - ./agents.txt:/root/nutch/conf/agents.txt
+      - ./index-writers.xml:/root/conf/index-writers.xml
+      - ./nutch-site.xml:/root/conf/nutch-site.xml
+      - ./regex-urlfilter.txt:/root/conf/regex-urlfilter.txt
+      - ./agents.txt:/root/conf/agents.txt
+      - ./batch_urls:/root/conf/batch_urls
+      - ./copy_conf_files.sh:/root/copy_conf_files.sh
+        
     stdin_open: true
-
+    mem_limit: 2000000000
+    restart: always
 

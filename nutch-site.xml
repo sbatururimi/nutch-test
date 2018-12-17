@@ -83,7 +83,7 @@
 
 <property>
   <name>http.agent.name</name>
-  <value>nutch bot</value>
+  <value>Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.0 (KHTML\, like Gecko) Chrome/3.0.198</value>
   <description>HTTP 'User-Agent' request header. MUST NOT be empty - 
   please set this to a single word uniquely related to your organization.
 
@@ -127,6 +127,12 @@
 </property>
 
 <property>
+  <name>ignore.robots.txt</name>
+  <value>true</value>
+  <description>If true, the crawler ignores any robots.txt file on the server</description>
+</property>
+
+<property>
   <name>http.robots.403.allow</name>
   <value>true</value>
   <description>Some servers return HTTP status 403 (Forbidden) if
@@ -164,7 +170,7 @@
 
 <property>
   <name>http.agent.version</name>
-  <value>Nutch-1.15-SNAPSHOT</value>
+  <value></value>
   <description>A version string to advertise in the User-Agent 
    header.</description>
 </property>
@@ -200,7 +206,7 @@
 
 <property>
   <name>http.timeout</name>
-  <value>10000</value>
+  <value>60000</value>
   <description>The default network timeout, in milliseconds.</description>
 </property>
 
@@ -257,7 +263,7 @@
 
 <property>
   <name>http.proxy.port</name>
-  <value></value>
+  <value>8118</value>
   <description>The proxy port.</description>
 </property>
 
@@ -321,13 +327,13 @@
 
 <property>
   <name>http.verbose</name>
-  <value>false</value>
+  <value>true</value>
   <description>If true, HTTP will log more verbosely.</description>
 </property>
 
 <property>
   <name>http.redirect.max</name>
-  <value>0</value>
+  <value>3</value>
   <description>The maximum number of redirects the fetcher will follow when
   trying to fetch a page. If set to negative or 0, fetcher won't immediately
   follow redirected URLs, instead it will record them for later fetching.
@@ -579,7 +585,7 @@
 
 <property>
   <name>db.update.purge.404</name>
-  <value>false</value>
+  <value>true</value>
   <description>If true, updatedb will add purge records with status DB_GONE
   from the CrawlDB.
   </description>
@@ -623,7 +629,7 @@
 
 <property>
   <name>db.ignore.internal.links</name>
-  <value>false</value>
+  <value>true</value>
   <description>If true, outlinks leading from a page to internal hosts or domain
   will be ignored. This is an effective way to limit the crawl to include
   only initially injected hosts or domains, without creating complex URLFilters.
@@ -633,7 +639,7 @@
 
 <property>
   <name>db.ignore.external.links</name>
-  <value>false</value>
+  <value>true</value>
   <description>If true, outlinks leading from a page to external hosts or domain
   will be ignored. This is an effective way to limit the crawl to include
   only initially injected hosts or domains, without creating complex URLFilters.
@@ -643,7 +649,7 @@
 
 <property>
   <name>db.ignore.also.redirects</name>
-  <value>true</value>
+  <value>false</value>
   <description>If true, the fetcher checks redirects the same way as
   links when ignoring internal or external links. Set to false to
   follow redirects despite the values for db.ignore.external.links and
@@ -719,7 +725,7 @@
 
 <property>
   <name>db.max.outlinks.per.page</name>
-  <value>100</value>
+  <value>5</value>
   <description>The maximum number of outlinks that we'll process for a page.
   If this value is nonnegative (>=0), at most db.max.outlinks.per.page outlinks
   will be processed for a page; otherwise, all outlinks will be processed.
@@ -796,7 +802,7 @@
 
 <property>
   <name>linkdb.max.inlinks</name>
-  <value>10000</value>
+  <value>1</value>
   <description>Maximum number of Inlinks per URL to be kept in LinkDb.
   If "invertlinks" finds more inlinks than this number, only the first
   N inlinks will be stored, and the rest will be discarded.
@@ -815,7 +821,7 @@
 
 <property>
   <name>linkdb.ignore.external.links</name>
-  <value>false</value>
+  <value>true</value>
   <description>If true, when adding new links to a page, links from
   the a different host are ignored.
   </description>
@@ -852,7 +858,7 @@
 
 <property>
   <name>generate.update.crawldb</name>
-  <value>false</value>
+  <value>true</value>
   <description>For highly-concurrent environments, where several
   generate/fetch/update cycles may overlap, setting this to true ensures
   that generate will create different fetchlists even without intervening
@@ -955,7 +961,7 @@
 
 <property>
   <name>fetcher.threads.fetch</name>
-  <value>50</value>
+  <value>20</value>
   <description>The number of FetcherThreads the fetcher should use.
   This is also determines the maximum number of requests that are
   made at once (each FetcherThread handles one connection). The total
@@ -966,7 +972,7 @@
 
 <property>
   <name>fetcher.threads.per.queue</name>
-  <value>50</value>
+  <value>20</value>
   <description>This number is the maximum number of threads that
     should be allowed to access a queue at one time. Setting it to 
     a value > 1 will cause the Crawl-Delay value from robots.txt to
@@ -986,13 +992,13 @@
 
 <property>
   <name>fetcher.verbose</name>
-  <value>false</value>
+  <value>true</value>
   <description>If true, fetcher will log more verbosely.</description>
 </property>
 
 <property>
   <name>fetcher.parse</name>
-  <value>false</value>
+  <value>true</value>
   <description>If true, fetcher will parse content. Default is false, which means
   that a separate parsing step is required after fetching is finished.</description>
 </property>
@@ -1005,7 +1011,7 @@
 
 <property>
   <name>fetcher.timelimit.mins</name>
-  <value>-1</value>
+  <value>30</value>
   <description>This is the number of minutes allocated to the fetching.
   Once this value is reached, any remaining entry from the input URL list is skipped 
   and all active queues are emptied. The default value of -1 deactivates the time limit.
@@ -1034,7 +1040,7 @@
 
 <property>
   <name>fetcher.throughput.threshold.retries</name>
-  <value>5</value>
+  <value>10</value>
   <description>The number of times the fetcher.throughput.threshold is allowed to be exceeded.
   This settings prevents accidental slow downs from immediately killing the fetcher thread.
   </description>
@@ -1068,7 +1074,7 @@
 
 <property>
   <name>fetcher.follow.outlinks.depth</name>
-  <value>-1</value>
+  <value>5</value>
   <description>(EXPERT)When fetcher.parse is true and this value is greater than 0 the fetcher will extract outlinks
   and follow until the desired depth is reached. A value of 1 means all generated pages are fetched and their first degree
   outlinks are fetched and parsed too. Be careful, this feature is in itself agnostic of the state of the CrawlDB and does not
@@ -1081,7 +1087,7 @@
 
 <property>
   <name>fetcher.follow.outlinks.num.links</name>
-  <value>4</value>
+  <value>0</value>
   <description>(EXPERT)The number of outlinks to follow when fetcher.follow.outlinks.depth is enabled. Be careful, this can multiply
   the total number of pages to fetch. This works with fetcher.follow.outlinks.depth.divisor, by default settings the followed outlinks
   at depth 1 is 8, not 4.
@@ -1090,7 +1096,7 @@
 
 <property>
   <name>fetcher.follow.outlinks.depth.divisor</name>
-  <value>2</value>
+  <value>0</value>
   <description>(EXPERT)The divisor of fetcher.follow.outlinks.num.links per fetcher.follow.outlinks.depth. This decreases the number
   of outlinks to follow by increasing depth. The formula used is: outlinks = floor(divisor / depth * num.links). This prevents
   exponential growth of the fetch list.
@@ -1115,7 +1121,7 @@
 
 <property>
   <name>fetcher.maxNum.threads</name>
-  <value>50</value>  
+  <value>20</value>  
   <description>Max number of fetch threads allowed when using fetcher.bandwidth.target. Defaults to fetcher.threads.fetch if unspecified or
   set to a value lower than it. </description>
 </property>
@@ -1222,7 +1228,7 @@
 
 <property>
   <name>indexer.max.title.length</name>
-  <value>100</value>
+  <value>-1</value>
   <description>The maximum number of characters of a title that are indexed. A value of -1 disables this check.
   </description>
 </property>
@@ -1624,7 +1630,7 @@ CAUTION: Set the parser.timeout to -1 or a bigger value than 30, when using this
 
 <property>
   <name>scoring.depth.max</name>
-  <value>1000</value>
+  <value>1</value>
   <description>Max depth value from seed allowed by default.
   Can be overridden on a per-seed basis by specifying "_maxdepth_=VALUE"
   as a seed metadata. This plugin adds a "_depth_" metadatum to the pages
@@ -1972,7 +1978,7 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property> 
   <name>link.loops.depth</name>
-  <value>2</value>
+  <value>1</value>
   <description>The depth for the loops algorithm.</description>
 </property>
 
@@ -2401,7 +2407,7 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property>
   <name>page.load.delay</name>
-  <value>3</value>
+  <value>30</value>
   <description>
     The delay in seconds to use when loading a page with htmlunit or selenium. 
   </description>
@@ -2465,7 +2471,7 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property>
   <name>selenium.driver</name>
-  <value>remote</value>s
+  <value>remote</value>
   <description>
     A String value representing the flavour of Selenium 
     WebDriver() to use. Currently the following options
@@ -2503,10 +2509,11 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property>
   <name>selenium.grid.driver</name>
-  <value>random</value>
+  <value>firefox</value>
   <description>A String value representing the flavour of Selenium 
     WebDriver() used on the selenium grid. We must set `selenium.driver` to `remote` first.
-    Currently the following options exist - 'firefox', 'chrome', 'random'. 
+    Currently the following options exist - 'firefox', 'chrome', 'random'. The `random` mode
+    switch between firefox and chrome drivers randomly.
   </description>
 </property>
 
@@ -2921,7 +2928,7 @@ If true (default) the Sitemap parser rejects URLs not sharing the same
 
 <property>
   <name>sitemap.redir.max</name>
-  <value>5</value>
+  <value>3</value>
   <description>
     Maximum number of redirects to follow.
    </description>
