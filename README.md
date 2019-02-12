@@ -129,5 +129,18 @@ localhost:8983/
 *:*
 ```
 
+# Hints
+
+Regarding the redirects: if you want to follow redirects immediately in the fetcher you simply could adjust `http.redirect.max` (e.g., set it to 3) and Fetcher will follow the redirects immediately.
+Btw., for quick testing you could just set the required parameters in the command-line, e.g.:
+```
+% bin/nutch parsechecker -Dplugin.includes='protocol-selenium|parse-tika' \
+   -Dselenium.grid.binary=.../geckodriver \
+   -Dselenium.enable.headless=true \
+   -followRedirects \
+   -dumpText https://nutch.apache.org
+
+```
+
  ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/sbatururimi/nutch-test/blob/master/LICENSE.md)
